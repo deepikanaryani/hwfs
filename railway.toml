@@ -1,8 +1,0 @@
-[build]
-builder = "nixpacks"
-
-[deploy]
-startCommand = "node nodejs_hello_server.js"
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 10
-EOF
