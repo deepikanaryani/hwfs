@@ -2,7 +2,7 @@
   "name": "hello-world-fullstack",
   "version": "1.0.0",
   "description": "A simple frontend + backend Hello World app",
-  "main": "server.js",
+  "main": "nodejs_hello_server.js",
   "scripts": {
     "start": "node nodejs_hello_server.js",
     "dev": "node nodejs_hello_server.js"
