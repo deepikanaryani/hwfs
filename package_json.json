@@ -4,8 +4,8 @@
   "description": "A simple frontend + backend Hello World app",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "node nodejs_hello_server.js",
+    "dev": "node nodejs_hello_server.js"
   },
   "dependencies": {
     "express": "^4.18.2"
