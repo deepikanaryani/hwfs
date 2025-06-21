@@ -1,9 +1,0 @@
-[phases.setup]
-nixPkgs = ["nodejs", "npm"]
-
-[phases.build]
-cmds = ["npm install"]
-
-[start]
-cmd = "node nodejs_hello_server.js"
-EOF
