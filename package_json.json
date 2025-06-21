@@ -1,0 +1,24 @@
+{
+  "name": "hello-world-fullstack",
+  "version": "1.0.0",
+  "description": "A simple frontend + backend Hello World app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "fullstack",
+    "hello-world"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

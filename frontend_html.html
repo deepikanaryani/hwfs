@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend + Backend Hello World</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .button {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .loading {
+            color: #FFD93D;
+        }
+        
+        .error {
+            color: #FF6B6B;
+        }
+        
+        .success {
+            color: #4ECDC4;
+        }
+        
+        .timestamp {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Frontend + Backend Demo</h1>
+        
+        <div id="message" class="message">
+            Click the button to fetch "Hello World" from the backend server!
+        </div>
+        
+        <button class="button" onclick="fetchHelloWorld()">
+            Get Hello World from Server
+        </button>
+        
+        <button class="button" onclick="showStaticMessage()">
+            Show Static Frontend Message
+        </button>
+        
+        <div id="timestamp" class="timestamp"></div>
+    </div>
+
+    <script>
+        // Function to fetch data from backend API
+        async function fetchHelloWorld() {
+            const messageEl = document.getElementById('message');
+            const timestampEl = document.getElementById('timestamp');
+            
+            // Show loading state
+            messageEl.textContent = 'Loading...';
+            messageEl.className = 'message loading';
+            timestampEl.textContent = '';
+            
+            try {
+                // Fetch data from backend API
+                const response = await fetch('/api/hello');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Display the message from backend
+                messageEl.textContent = data.message;
+                messageEl.className = 'message success';
+                timestampEl.textContent = `Server timestamp: ${new Date(data.timestamp).toLocaleString()}`;
+                
+            } catch (error) {
+                messageEl.textContent = `Error: ${error.message}`;
+                messageEl.className = 'message error';
+                timestampEl.textContent = '';
+            }
+        }
+        
+        // Function to show static frontend message
+        function showStaticMessage() {
+            const messageEl = document.getElementById('message');
+            const timestampEl = document.getElementById('timestamp');
+            
+            messageEl.textContent = 'Hello World from Frontend!';
+            messageEl.className = 'message success';
+            timestampEl.textContent = `Client timestamp: ${new Date().toLocaleString()}`;
+        }
+    </script>
+</body>
+</html>
